@@ -10,6 +10,13 @@ namespace Train
     {
         static void Main(string[] args)
         {
+            Train train = new Train();
+            Traveler traveler = new Traveler("Goes", "firstclass");
+                      
+            train.GetIn(traveler);
+            
+
+            Console.Read();
         }
     }
 }

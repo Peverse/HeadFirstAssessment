@@ -47,6 +47,8 @@ namespace Train
                     secondClass.Add(traveler);
 
             }
+            Console.WriteLine(firstClass);
+            Console.WriteLine(secondClass);
         }
     }
 }
