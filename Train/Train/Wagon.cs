@@ -9,12 +9,8 @@ namespace Train
 {
     public class Wagon
     {
-        
-
-        public void GetIn(Traveler traveler)
-        {
-            ArrayList firstClass;
-            firstClass.Add(traveler);
-        }
+        public int firstClass = 3;
+        public int secondClass = 4;
+      
     }
 }
