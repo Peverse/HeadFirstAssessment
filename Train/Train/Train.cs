@@ -10,13 +10,13 @@ namespace Train
     {
         public ArrayList wagons = new ArrayList();
 
-        public ArrayList[] firstClass;
-        public ArrayList[] secondClass;
+        public ArrayList firstClass;
+        public ArrayList secondClass;
 
         public Train()
         {
-            this.firstClass = new ArrayList[this.GetFirstClassSeats(wagons)];
-            this.secondClass = new ArrayList[this.GetSecondClassSeats(wagons)];
+            this.firstClass = new ArrayList(this.GetFirstClassSeats(wagons));
+            this.secondClass = new ArrayList(this.GetSecondClassSeats(wagons));
         }
 
         public int GetFirstClassSeats(ArrayList wagons)
@@ -31,9 +31,21 @@ namespace Train
 
         public void GetIn(Traveler traveler)
         {
-            if (traveler.GetCard() == "secondclass")
+            if(traveler.GetCard() == "firstclass")
             {
-                
+                firstClass.Add(traveler);
+            }
+
+            else
+            {
+                if (secondClass.Count == this.GetSecondClassSeats(wagons))
+                {
+                    firstClass.Add(traveler);
+                }
+
+                else
+                    secondClass.Add(traveler);
+
             }
         }
     }
