@@ -8,18 +8,23 @@ namespace Train
 {
     public class Traveler
     {
-        string destination;
-        string card;
+        private string destination;
+        private int? card;
 
-        public Traveler(string destination, string card)
+        public Traveler(string destination, int? card)
         {
             this.destination = destination;
             this.card = card;
         }
 
-        public string GetCard()
+        public int? GetCard()
         {
-            return this.card;
+            return card;
+        }
+
+        public string GetDestination()
+        {
+            return destination;
         }
     }
 }

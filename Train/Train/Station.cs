@@ -8,7 +8,7 @@ namespace Train
 {
     public class Station
     {
-        ArrayList travelers;
+        public string location;
 
         public Station(Traveler traveler)
         {
