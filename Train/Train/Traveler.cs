@@ -26,5 +26,10 @@ namespace Train
         {
             return destination;
         }
+
+        public void SetDestination(string destination)
+        {
+            this.destination = destination;
+        }
     }
 }

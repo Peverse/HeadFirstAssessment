@@ -9,7 +9,7 @@ namespace Train
     public class Train
     {
 
-        private int wagons;
+        private int wagons = 1;
         public ArrayList firstClass;
         public ArrayList secondClass;
 
@@ -19,63 +19,21 @@ namespace Train
             this.secondClass = new ArrayList(4);
         }
 
-        public void AddWagons(int amount)
+        public void AddWagons(Station station, int amount)
         {
+            Console.WriteLine("Er zijn " + amount + " wagons aangekoppeld op station " + station.location + ".\n" +
+                                "De reizigers gaan nu verzitten. \n");
+
             for (int i = 0; i < amount; i++)
             {
                 wagons++;
                 firstClass.Capacity = firstClass.Capacity + 3;
                 secondClass.Capacity = secondClass.Capacity + 4;
-                this.WagonChange();
+                this.WagonChange(station);
             }
         }
 
-        
-
-        public void GetIn(Traveler traveler)
-        {
-            if(traveler.GetCard() == 1)
-            {
-                firstClass.Add(traveler);
-                Console.WriteLine("Reiziger stapt in de eerste klas");
-            }
-
-            else
-            {
-                if (secondClass.Count < secondClass.Capacity)
-                {
-                    secondClass.Add(traveler);
-                    Console.WriteLine("Reiziger stapt in de tweede klas");
-                }
-
-                else
-                {
-                    firstClass.Add(traveler);
-                    Console.WriteLine("Tweedeklas zit vol, Reiziger stapt in de eerste klas");
-                }
-            }
-        }
-
-        public void GetOut(Station station)
-        {
-            foreach (Traveler traveler in firstClass)
-            {
-                if(traveler.GetDestination() == station.location)
-                {
-                    firstClass.Remove(traveler);
-                }
-            }
-
-            foreach (Traveler traveler in secondClass)
-            {
-                if (traveler.GetDestination() == station.location)
-                {
-                    secondClass.Remove(traveler);
-                }
-            }
-        }
-
-        public void WagonChange()
+        public void WagonChange(Station station)
         {
             ArrayList waiting = new ArrayList();
 
@@ -95,8 +53,36 @@ namespace Train
 
             foreach (Traveler traveler in waiting)
             {
-                this.GetIn(traveler);
+                station.GetIn(this, traveler);
             }
+        }
+
+        public void CheckCards(Station nextstation)
+        {
+            foreach(Traveler traveler in firstClass)
+            {
+                if(traveler.GetCard() == null)
+                {
+                    traveler.SetDestination(nextstation.location);
+                    Console.WriteLine("Dat wordt een boete meneer! U moet eruit bij Station " + nextstation.location + ".\n");
+                }
+            }
+
+            foreach (Traveler traveler in secondClass)
+            {
+                if (traveler.GetCard() == null)
+                {
+                    traveler.SetDestination(nextstation.location);
+                    Console.WriteLine("Dat wordt een boete meneer! U moet eruit bij Station " + nextstation.location + ".\n");
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return "Deze trein heeft " + this.wagons + " wagons\n" +
+                "Er zitten " + this.firstClass.Count + " reizigers in de eerste klas.\n" +
+                "Er zitten " + this.secondClass.Count + " reizigers in de tweede klas.\n";
         }
     }
 }
