@@ -20,7 +20,7 @@ namespace Train
             if (traveler.GetCard() == 1)
             {
                 train.firstClass.Add(traveler);
-                Console.WriteLine("Reiziger stapt in de eerste klas");
+                //Console.WriteLine("Reiziger stapt in de eerste klas");
             }
 
             else
@@ -28,13 +28,13 @@ namespace Train
                 if (train.secondClass.Count < train.secondClass.Capacity)
                 {
                     train.secondClass.Add(traveler);
-                    Console.WriteLine("Reiziger stapt in de tweede klas");
+                    //Console.WriteLine("Reiziger stapt in de tweede klas");
                 }
 
                 else
                 {
                     train.firstClass.Add(traveler);
-                    Console.WriteLine("Tweedeklas zit vol, Reiziger stapt in de eerste klas");
+                    //Console.WriteLine("Tweedeklas zit vol, Reiziger stapt in de eerste klas");
                 }
             }
         }
@@ -59,7 +59,7 @@ namespace Train
                 {
                     train.firstClass.Remove(traveler);
                     train.secondClass.Remove(traveler);
-                    Console.WriteLine("Er stapt iemand uit op Station " + this.location);
+                    //Console.WriteLine("Er stapt iemand uit op Station " + this.location);
                 }
             }
         }
